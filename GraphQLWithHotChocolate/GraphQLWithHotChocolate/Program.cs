@@ -12,16 +12,20 @@ builder.Services
 
 builder.Services.AddDbContext<BookContext>(context =>
 {
-    context.UseInMemoryDatabase("BookServer");
+    context.UseSqlite("Data Source=BookServer");
 });
 
 var app = builder.Build();
+
+var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<BookContext>();
+context.Database.EnsureDeleted();
+context.Database.EnsureCreated();
+await BogusData.SeedData(context);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-
 }
 
 app.UseHttpsRedirection();
