@@ -4,17 +4,11 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Bogus" Version="34.0.2" />
-        <PackageReference Include="HotChocolate.AspNetCore" Version="12.7.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\BookStore\BookStore.csproj" />
     </ItemGroup>
 
 </Project>

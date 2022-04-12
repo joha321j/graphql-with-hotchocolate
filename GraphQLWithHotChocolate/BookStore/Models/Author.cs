@@ -1,4 +1,4 @@
-﻿namespace GraphQLWithHotChocolate.Models;
+﻿namespace BookStore.Models;
 
 public class Author
 {

@@ -1,28 +1,19 @@
-﻿using GraphQLWithHotChocolate.Context;
-using GraphQLWithHotChocolate.Models;
+﻿using BookStore.Models;
 
 namespace GraphQLWithHotChocolate.GraphQLQueries;
 
 public class Query
 {
-    private readonly List<Author> _authors;
-    private readonly List<Book> _books;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public Query()
+    public Query(IHttpClientFactory httpClientFactory)
     {
-        _authors = BogusData.CreateData();
-        _books = new List<Book>();
-
-        _authors.ForEach(a => _books.AddRange(a.Books));
+        _httpClientFactory = httpClientFactory;
     }
-
-    public List<Book> GetBooks()
+    public async Task<List<Book>?> GetObjects(string endpoint = "/books")
     {
-        return _books;
-    }
+        var client = _httpClientFactory.CreateClient("BookStore");
 
-    public List<Author> GetAuthors()
-    {
-        return _authors;
+        return await client.GetFromJsonAsync<List<Book>>(endpoint);
     }
 }

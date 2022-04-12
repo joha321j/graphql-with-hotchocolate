@@ -1,0 +1,12 @@
+name: GraphQLWithHotChocolate
+
+services:
+  - name: BookStore
+    project: BookStore/BookStore.csproj
+    bindings:
+      - port: 7008
+
+  - name: GraphQL
+    project: GraphQLWithHotChocolate/GraphQLWithHotChocolate.csproj
+    bindings:
+      - port: 8888

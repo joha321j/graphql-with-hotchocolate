@@ -1,7 +1,7 @@
 ﻿using Bogus;
-using GraphQLWithHotChocolate.Models;
+using BookStore.Models;
 
-namespace GraphQLWithHotChocolate.Context;
+namespace BookStore.Context;
 
 public static class BogusData
 {
