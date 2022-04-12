@@ -7,5 +7,5 @@ public class Author
 
     public string LastName { get; set; }
 
-    public ICollection<Book> Books { get; set; }
+    public List<Book> Books { get; set; }
 }

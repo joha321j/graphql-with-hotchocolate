@@ -1,29 +1,28 @@
 ﻿using GraphQLWithHotChocolate.Context;
 using GraphQLWithHotChocolate.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace GraphQLWithHotChocolate.GraphQLQueries;
 
 public class Query
 {
-    private readonly BookContext _context;
+    private readonly List<Author> _authors;
+    private readonly List<Book> _books;
 
-    public Query(BookContext context)
+    public Query()
     {
-        _context = context;
+        _authors = BogusData.CreateData();
+        _books = new List<Book>();
+
+        _authors.ForEach(a => _books.AddRange(a.Books));
     }
 
-    public List<Book>? GetBooks()
+    public List<Book> GetBooks()
     {
-        var books = _context.Books?.Include(b => b.Author).AsNoTracking();
-        return books?.ToList();
-
+        return _books;
     }
 
-    public List<Author>? GetAuthors()
+    public List<Author> GetAuthors()
     {
-        var authors = _context.Authors?.Include(a => a.Books).AsNoTracking();
-
-        return authors?.ToList();
+        return _authors;
     }
 }
